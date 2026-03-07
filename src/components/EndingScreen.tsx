@@ -12,15 +12,25 @@ export const EndingScreen = ({ discovered, insectCounts, onRestart, onOpenEncycl
   else if (progress >= 40) { rank = 'B'; message = '自然との共生。憩いの昆虫ガーデン'; }
 
   let mostFrequentId = INSECTS[0].id;
-  let maxCount = -1;
+  let maxScore = -1;
+  
   Object.entries(insectCounts).forEach(([id, count]) => {
-    if (count > maxCount) {
-      maxCount = count;
+    const insect = INSECTS.find(i => i.id === id);
+    const rarity = insect ? insect.rarity : 1;
+    // スコア = 出現回数 × レア度
+    const score = count * rarity;
+    
+    const currentBestInsect = INSECTS.find(i => i.id === mostFrequentId);
+    const currentBestRarity = currentBestInsect ? currentBestInsect.rarity : 1;
+
+    // スコアが高い、または同点でもレア度が高い方を優先する
+    if (score > maxScore || (score === maxScore && rarity > currentBestRarity)) {
+      maxScore = score;
       mostFrequentId = id;
     }
   });
   
-  if (maxCount === -1 && discovered.length > 0) {
+  if (maxScore === -1 && discovered.length > 0) {
     mostFrequentId = discovered[0];
   }
   
