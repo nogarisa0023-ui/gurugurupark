@@ -77,7 +77,7 @@ export default function App() {
 
     // Evaluate insects
     const stats = getMapStats(newGrid, hiddenPoints);
-    const appearedInsects = INSECTS.filter(insect => insect.checkAppearance(stats)).map(i => i.id);
+    const appearedInsects = INSECTS.filter(insect => insect.checkAppearance(stats, newGrid)).map(i => i.id);
     setCurrentYearInsects(appearedInsects);
 
     // Update discovered

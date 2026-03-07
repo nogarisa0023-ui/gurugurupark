@@ -56,6 +56,18 @@ export const Encyclopedia = ({ discovered, onClose }: { discovered: string[], on
           );
         })}
       </div>
+      
+      <div className="p-4 bg-white border-t border-stone-200 shrink-0 text-center">
+        <a 
+          href="https://edu.web.nhk/school/zukan/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm font-bold text-green-700 hover:text-green-800 hover:underline bg-green-50 px-4 py-2 rounded-full transition-colors"
+        >
+          <BookOpen size={16} />
+          ものすごい図鑑（NHK for School）をもっと見る
+        </a>
+      </div>
     </div>
   );
 };
